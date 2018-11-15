@@ -1,23 +1,23 @@
 <!DOCTYPE html>
 <html>
     <%- include("../include/head.ejs"); %>
-    
+
     <body>
         <%- include("../include/top-bar") %>
         <%- include("../include/header"); %>
-        
+
         <main>
             <form action="/keys/check-out">
                 <input type="hidden" name="id" value="<%= key.id %>">
                 <button class="float-right">Check out</button>
             </form>
-            
+
             <table>
                 <tr>
                     <td>Key ID</td>
                     <td><%= key.id %></td>
                 </tr>
-                
+
                 <tr>
                     <td>Available</td>
                     <td>
@@ -28,23 +28,28 @@
                         <% } %>
                     </td>
                 </tr>
-                
+
                 <tr>
                     <td>Type</td>
                     <td><%= key.type %></td>
                 </tr>
-                
+
                 <tr>
                     <td>Location</td>
                     <td><%= key.location %></td>
                 </tr>
-                
+
+                <tr>
+                    <td>Storage location</td>
+                    <td><%= key.storage %></td>
+                </tr>
+
                 <tr>
                     <td>Allocations</td>
                     <td><%= key.allocations %> / <%= key.quantity %></td>
                 </tr>
             </table>
-            
+
             <table class="key-table">
                 <thead>
                     <tr>
@@ -54,7 +59,7 @@
                         <td></td>
                     </tr>
                 </thead>
-                
+
                 <tbody>
                     <%
                         var zeroPad = function(input) {
@@ -64,21 +69,21 @@
                                 return "" + input;
                             }
                         }
-                        
+
                         var timeToString = function(timestamp) {
                             var out = "";
-                            
+
                             out += (1900 + timestamp.year) + "-";
                             out += zeroPad(timestamp.month) + "-";
                             out += zeroPad(timestamp.day) + " ";
                             out += zeroPad(timestamp.hour) + ":";
                             out += zeroPad(timestamp.minute) + ":";
                             out += zeroPad(timestamp.second);
-                            
+
                             return out;
                         }
                     %>
-                    
+
                     <% for (var i = 0; i < allocations.length; i++) { %>
                         <tr>
                             <!-- <td><%# allocations[i]["key-id"] %></td> -->
@@ -95,12 +100,12 @@
                     <% } %>
                 </tbody>
             </table>
-            
+
             <% if (allocations.length == 0) { %>
                 <p>This key has not yet been allocated.</p>
             <% } %>
         </main>
-        
+
         <%- include("../include/footer.ejs"); %>
     </body>
 </html>
