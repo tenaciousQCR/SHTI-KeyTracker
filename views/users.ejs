@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <%- include("include/head.ejs"); %>
+    
+    <body>
+        <%- include("include/top-bar") %>
+        <%- include("include/header"); %>
+        
+        <main>
+            <ul class="user-list">
+                <% for (i = 0; i < users.length; i++) { %>
+                    <li><a href="/config/user?username=<%= users[i].username %>"><%= users[i].username %></a></li>
+                <% } %>
+            </ul>
+        </main>
+        
+        <% if (privilege === "owner") { %>
+                <form action="/config/add-user" method="GET">
+                    <button type="submit">Add user</button>
+                </form>
+        <% } %>
+        
+        <%- include("include/footer.ejs"); %>
+    </body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+    <%- include("include/head.ejs"); %>
+
+    <body>
+        <%- include("include/top-bar") %>
+        <%- include("include/header"); %>
+
+        <main>
+            <div id="search-bar">
+                <form id="search-form">
+                    <input name="search" placeholder="Search key ID..." type="search">
+                </form>
+
+                <!-- <form id="filter-form">
+                    <label for="key-type">Key Type</label>
+                    <select id="key-type">
+                        <option>All</option>
+                        <option>Submaster</option>
+                        <option>Key fob</option>
+                    </select>
+
+                    <label for="availability">Availability</label>
+                    <select id="availability">
+                        <option>All</option>
+                        <option>Available</option>
+                        <option>Borrowed</option>
+                    </select>
+
+                    <label for="users">Users</label>
+                    <select id="users">
+                        <option>All</option>
+                        <option>Computing</option>
+                        <option>Engineering</option>
+                    </select>
+                </form> -->
+            </div>
+
+            <table class="key-table">
+                <thead>
+                    <tr>
+                        <td>Key ID</td>
+                        <td>Status</td>
+                        <td>Type</td>
+                        <td>Location</td>
+                        <td>Quantity</td>
+                        <td>Allocations</td>
+                        <td></td>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <% for (var i = 0; i < keys.length; i++) { %>
+                        <tr>
+                            <td><%= keys[i].id %></td>
+
+                            <td>
+                                <% if (keys[i].allocations >= keys[i].quantity) { %>
+                                    All borrowed
+                                <% } else { %>
+                                    Available
+                                <% } %>
+                            </td>
+
+                            <td><%= keys[i].type %></td>
+                            <td><%= keys[i].location %></td>
+                            <td><%= keys[i].quantity %></td>
+                            <td><%= keys[i].allocations %></td>
+                            <td>
+                                <form action="/keys/view">
+                                    <input type="hidden" name="id" value="<%- keys[i].id %>">
+                                    <button type="submit">Key info/Check out</button>
+                                </form>
+                            </td>
+                        </tr>
+                    <% } %>
+                </tbody>
+            </table>
+
+            <% if (keys.length == 0) { %>
+                <% if (typeof search === "undefined" || search === null) { %>
+                    <p>No keys have been registered to the system yet.</p>
+                <% } else { %>
+                    <p>No results have been found for the given query.</p>
+                <% } %>
+            <% } %>
+
+            <% if (settings.debug) { %>
+                <p id="debug-display-selected"></p>
+            <% } %>
+
+            <div>
+                <form action="/keys/add">
+                    <button class="float-right" type="submit">Add key</button>
+                </form>
+            </div>
+        </main>
+
+        <%- include("include/footer.ejs"); %>
+    </body>
+</html>

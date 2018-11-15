@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <%- include("include/head.ejs"); %>
+    
+    <body>
+        <%- include("include/top-bar") %>
+        <%- include("include/header") %>
+        
+        <main>
+            <table class="key-table">
+                <thead>
+                    <tr>
+                        <td>Key ID</td>
+                        <td>Action</td>
+                        <td>Keyholder</td>
+                        <td>User</td>
+                        <td>Date</td>
+                    </tr>
+                </thead>
+                
+                <tbody>
+                    <%
+                        var zeroPad = function(input) {
+                            if (input < 10) {
+                                return "0" + input;
+                            } else {
+                                return "" + input;
+                            }
+                        }
+                        
+                        var timeToString = function(timestamp) {
+                            var out = "";
+                            
+                            out += (1900 + timestamp.year) + "-";
+                            out += zeroPad(timestamp.month) + "-";
+                            out += zeroPad(timestamp.day) + " ";
+                            out += zeroPad(timestamp.hour) + ":";
+                            out += zeroPad(timestamp.minute) + ":";
+                            out += zeroPad(timestamp.second);
+                            
+                            return out;
+                        }
+                    %>
+                    
+                    <% for (var i = 0; i < log.length; i++) { %>
+                        <tr>
+                            <td><%= log[i].id %></td>
+                            <td><%= log[i].action %></td>
+                            <td><%= log[i].keyholder %></td>
+                            <td><%= log[i].user %></td>
+                            <td><%= timeToString(log[i].timestamp) %></td>
+                        </tr>
+                    <% } %>
+                </tbody>
+            </table>
+        </main>
+        
+        <%- include("include/footer.ejs"); %>
+    </body>
+</html>

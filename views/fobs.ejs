@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+    <%- include("include/head.ejs"); %>
+
+    <body>
+        <%- include("include/top-bar") %>
+        <%- include("include/header"); %>
+
+        <main>
+            <div id="search-bar">
+                <form id="search-form">
+                    <input name="search" placeholder="Search fobs..." type="search">
+                </form>
+                
+                <!-- <form id="filter-form">
+                    <label for="key-type">Key Type</label>
+                    <select id="key-type">
+                        <option>All</option>
+                        <option>Submaster</option>
+                        <option>Key fob</option>
+                    </select>
+
+                    <label for="availability">Availability</label>
+                    <select id="availability">
+                        <option>All</option>
+                        <option>Available</option>
+                        <option>Borrowed</option>
+                    </select>
+
+                    <label for="users">Users</label>
+                    <select id="users">
+                        <option>All</option>
+                        <option>Computing</option>
+                        <option>Engineering</option>
+                    </select>
+                </form> -->
+            </div>
+
+            <table class="key-table">
+                <thead>
+                    <tr>
+                        <td>Fob ID</td>
+                        <td>Allocatee</td>
+                        <td></td>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <% for (var i = 0; i < fobs.length; i++) { %>
+                        <tr>
+                            <td><%= fobs[i].id %></td>
+                            <td><%= fobs[i].allocatee %></td>
+                            
+                            <td>
+                                <form action="/keys/del-fob" method="GET">
+                                    <input type="hidden" name="id" value="<%- fobs[i].id %>">
+                                    <input type="hidden" name="allocatee" value="<%- fobs[i].allocatee %>">
+                                    <button type="submit">Check in</button>
+                                </form>
+                            </td>
+                        </tr>
+                    <% } %>
+                </tbody>
+            </table>
+            
+            <% if (fobs.length == 0) { %>
+                <% if (typeof search === "undefined" || search === null) { %>
+                    <p>No fobs have been registered to the system yet.</p>
+                <% } else { %>
+                    <p>No results have been found for the given query.</p>
+                <% } %>
+            <% } %>
+
+            <% if (settings.debug) { %>
+                <p id="debug-display-selected"></p>
+            <% } %>
+
+            <div>
+                <form action="/keys/add-fob">
+                    <button class="float-right" type="submit">Add key fob</button>
+                </form>
+            </div>
+        </main>
+        
+        <%- include("include/footer.ejs"); %>
+    </body>
+</html>

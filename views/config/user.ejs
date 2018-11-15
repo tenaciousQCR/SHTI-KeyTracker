@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <%- include("../include/head.ejs"); %>
+    
+    <body>
+        <%- include("../include/top-bar") %>
+        <%- include("../include/header"); %>
+        
+        <main>
+            <h2>Change Password</h2>
+            <form class="bordered-form" action="/action/change-pass" method="POST">
+                <input type="hidden" name="username" value="<%= user.username %>">
+                <label for="password">Password</label>
+                <input type="password" name="password"><br>
+                <button type="submit">Change</button>
+            </form>
+            
+            <form action="/action/delete-user" method="POST">
+                <input type="hidden" name="username" value="<%= user.username %>">
+                <button type="submit">Delete user</button>
+            </form>
+        </main>
+        
+        <%- include("../include/footer.ejs"); %>
+    </body>
+</html>

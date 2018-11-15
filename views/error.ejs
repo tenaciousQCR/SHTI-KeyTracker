@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+    <%- include("include/head.ejs"); %>
+    
+    <body>
+        <%- include("include/top-bar"); %>
+        <%- include("include/header"); %>
+        
+        <main>
+            <p><%= errMsg %></p>
+            <p>Return to <a href="<%= returnLink.url %>"><%= returnLink.name %></a>.</p>
+        </main>
+        
+        <%- include("include/footer.ejs"); %>
+    </body>
+</html>

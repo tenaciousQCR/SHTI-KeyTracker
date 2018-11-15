@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <%- include("../include/head.ejs"); %>
+    
+    <body>
+        <%- include("../include/top-bar"); %>
+        <%- include("../include/header"); %>
+        
+        <main>
+            <form method="POST" action="/action/add-key" class="bordered-form">
+                <label for="id">Key ID</label><br>
+                <input type="text" name="id"><br>
+                <label for="type">Type</label><br>
+                <input type="text" name="type"><br>
+                <label for="location">Location</label><br>
+                <input type="text" name="location"><br>
+                <label for="storage">Storage location</label>
+                <input type="text" name="storage">
+                <label for="quantity">Number of keys</label><br>
+                <input type="number" name="quantity"><br>
+                
+                <button type="submit">Add new key</button>
+            </form>
+        </main>
+        
+        <%- include("../include/footer.ejs"); %>
+    </body>
+</html>

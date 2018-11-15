@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <%- include("../include/head.ejs"); %>
+    
+    <body>
+        <%- include("../include/top-bar"); %>
+        <%- include("../include/header"); %>
+        
+        <main>
+            <form action="/action/del-fob" method="POST">
+                <input type="hidden" name="id" value="<%- fob.id %>">
+                <input type="hidden" name="allocatee" value="<%- fob.allocatee %>">
+                <button class="float-left" type="submit">Check in</button>
+            </form>
+            
+            <form action="/fobs" method="GET">
+                <button type="submit">Cancel</button>
+            </form>
+        </main>
+        
+        <%- include("../include/footer.ejs"); %>
+    </body>
+</html>

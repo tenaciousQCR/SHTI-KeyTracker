@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+    <%- include("../include/head.ejs"); %>
+    
+    <body>
+        <%- include("../include/top-bar") %>
+        <%- include("../include/header"); %>
+        
+        <main>
+            <form action="/keys/check-out">
+                <input type="hidden" name="id" value="<%= key.id %>">
+                <button class="float-right">Check out</button>
+            </form>
+            
+            <table>
+                <tr>
+                    <td>Key ID</td>
+                    <td><%= key.id %></td>
+                </tr>
+                
+                <tr>
+                    <td>Available</td>
+                    <td>
+                        <% if (key.allocations >= key.quantity) { %>
+                            All borrowed
+                        <% } else { %>
+                            Available
+                        <% } %>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td>Type</td>
+                    <td><%= key.type %></td>
+                </tr>
+                
+                <tr>
+                    <td>Location</td>
+                    <td><%= key.location %></td>
+                </tr>
+                
+                <tr>
+                    <td>Allocations</td>
+                    <td><%= key.allocations %> / <%= key.quantity %></td>
+                </tr>
+            </table>
+            
+            <table class="key-table">
+                <thead>
+                    <tr>
+                        <!-- <td>Key ID</td> -->
+                        <td>Allocatee</td>
+                        <td>Assigned on</td>
+                        <td></td>
+                    </tr>
+                </thead>
+                
+                <tbody>
+                    <%
+                        var zeroPad = function(input) {
+                            if (input < 10) {
+                                return "0" + input;
+                            } else {
+                                return "" + input;
+                            }
+                        }
+                        
+                        var timeToString = function(timestamp) {
+                            var out = "";
+                            
+                            out += (1900 + timestamp.year) + "-";
+                            out += zeroPad(timestamp.month) + "-";
+                            out += zeroPad(timestamp.day) + " ";
+                            out += zeroPad(timestamp.hour) + ":";
+                            out += zeroPad(timestamp.minute) + ":";
+                            out += zeroPad(timestamp.second);
+                            
+                            return out;
+                        }
+                    %>
+                    
+                    <% for (var i = 0; i < allocations.length; i++) { %>
+                        <tr>
+                            <!-- <td><%# allocations[i]["key-id"] %></td> -->
+                            <td><%= allocations[i].allocatee %></td>
+                            <td><%= timeToString(allocations[i].timestamp) %></td>
+                            <td>
+                                <form action="/keys/check-in" method="GET">
+                                    <input type="hidden" name="id" value="<%- allocations[i]["key-id"] %>">
+                                    <input type="hidden" name="allocatee" value="<%- allocations[i].allocatee %>">
+                                    <button type="submit">Check in</button>
+                                </form>
+                            </td>
+                        </tr>
+                    <% } %>
+                </tbody>
+            </table>
+            
+            <% if (allocations.length == 0) { %>
+                <p>This key has not yet been allocated.</p>
+            <% } %>
+        </main>
+        
+        <%- include("../include/footer.ejs"); %>
+    </body>
+</html>

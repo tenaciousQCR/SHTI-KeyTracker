@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <%- include("../include/head.ejs"); %>
+    
+    <body>
+        <img id="main-logo" alt="Key Tracker logo" src="/img/logo.png" />
+        
+        <header>
+            <h1>Initial Setup</h1>
+        </header>
+        
+        <main>
+            <form method="POST" action="/action/add-user" class="bordered-form">
+                <label for="username">Username</label>
+                <input type="text" name="username"><br>
+                <label for="password">Password</label>
+                <input type="password" name="password"><br>
+                
+                <input type="hidden" name="privilege" value="owner">
+                <button type="submit">Get started</button>
+            </form>
+        </main>
+        
+        <%- include("../include/footer.ejs"); %>
+    </body>
+</html>

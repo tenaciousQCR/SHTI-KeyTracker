@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <%- include("../include/head.ejs"); %>
+    
+    <body>
+        <%- include("../include/top-bar"); %>
+        <%- include("../include/header"); %>
+        
+        <main>
+            <form method="POST" action="/action/add-fob" class="bordered-form">
+                <label for="id">Key ID</label><br>
+                <input type="text" name="id"><br>
+
+                <label for="allocatee">Allocatee</label><br>
+                <input type="text" name="allocatee"><br>
+                
+                <button type="submit">Add new key fob</button>
+            </form>
+        </main>
+        
+        <%- include("../include/footer.ejs"); %>
+    </body>
+</html>

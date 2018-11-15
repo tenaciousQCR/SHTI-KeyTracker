@@ -1,0 +1,164 @@
+body {
+    font-family:sans-serif;
+}
+
+#top-bar, #search-bar {
+    display:flex;
+}
+
+nav, #filter-form {
+    flex:1;
+    text-align:right;
+}
+
+nav li {
+    display:inline-block;
+}
+
+nav li a {
+    padding:4mm;
+    text-decoration:none;
+    text-align:right;
+    color:#721277;
+    outline:none;
+}
+
+nav li a:focus {
+    background-color:#e6d5e7;
+}
+
+nav li a:hover {
+    background-color:#ab82b2 !important;
+    color:#ffffff;
+}
+
+nav ul, #filter-form {
+    float:right;
+}
+
+.large-button {
+    padding:2em;
+    margin:0.5em;
+}
+
+div {
+    padding-top:0.5em;
+    padding-bottom:0.5em;
+}
+
+div:first-child {
+    padding-top:0;
+}
+
+#login-form {
+    margin-top:1cm;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+.bordered-form {
+    max-width:64mm;
+    background-color:#e6d5e7;
+    
+    border-color:#721277;
+    border-style:solid;
+    border-width:2px;
+    border-radius:4mm;
+    
+    padding:1cm;
+}
+
+.key-table {
+    margin:0;
+    border-spacing:0;
+    width:100%;
+    
+    border-style:solid;
+    border-color:#cccccc;
+    border-width:1px;
+}
+
+.key-table thead td {
+    background-color:#721277;
+    color:#ffffff;
+}
+
+.key-table tr:hover, .key-table tr:focus {
+    background-color:#e6d5e7;
+}
+
+.key-table tr.highlighted {
+    background-color:#ab82b2;
+}
+
+.key-table td {
+    padding:2mm;
+    
+    border-left-style:solid;
+    border-left-color:#cccccc;
+    border-left-width:1px
+}
+
+.key-table td:first-child {
+    border-left-width:0;
+}
+
+.user-list {
+    list-style:none;
+}
+
+.user-list li, .user-list a {
+    margin: 2mm;
+    padding: 2mm;
+}
+
+.user-list a {
+    text-decoration: none;
+    color: #721277;
+}
+
+.user-list a:hover {
+    background-color:#e6d5e7;
+}
+
+.user-list a:focus {
+    background-color:#ab82b2;
+    color:#ffffff;
+}
+
+button {
+    background-color: #721277;
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+    border: none;
+    color: white;
+    margin: 2mm;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 8px;
+}
+
+button:hover, button:focus {
+    background-color: #ab82b2;
+    color: black;
+    cursor: pointer;
+}
+
+.bigbutton {
+    width: 110px;
+    height: 50px;
+}
+
+form input {
+    margin-bottom:2mm;
+}
+
+.float-left {
+    float:left;
+}
+
+.float-right {
+    float:right;
+}

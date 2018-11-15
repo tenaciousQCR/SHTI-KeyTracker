@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <%- include("../include/head.ejs"); %>
+    
+    <body>
+        <%- include("../include/top-bar") %>
+        <%- include("../include/header"); %>
+        
+        <main>
+            <p>Are you sure you wish to check this key in?</p>
+            
+            <form action="/action/check-in" method="POST">
+                <input type="hidden" name="keyId" value="<%= key.id %>">
+                <input type="hidden" name="allocatee" value="<%= allocation.allocatee %>">
+                
+                <button class="float-left" type="submit">Check in</button>
+            </form>
+            
+            <form action="/keys/view" method="GET">
+                <input type="hidden" name="id" value="<%= key.id %>">
+                <button type="submit">Cancel</button>
+            </form>
+        </main>
+        
+        <%- include("../include/footer.ejs"); %>
+    </body>
+</html>

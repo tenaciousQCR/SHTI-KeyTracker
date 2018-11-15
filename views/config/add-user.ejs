@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <%- include("../include/head.ejs"); %>
+    
+    <body>
+        <%- include("../include/top-bar"); %>
+        <%- include("../include/header"); %>
+        
+        <main>
+            <form method="POST" action="/action/add-user" class="bordered-form">
+                <label for="username">Username</label>
+                <input type="text" name="username"><br>
+                <label for="password">Password</label>
+                <input type="password" name="password"><br>
+                
+                <label for="privilege">Privelege</label>
+                <select name="privilege">
+                    <option value="owner">Owner</option>
+                    <option value="limited">Limited user</option>
+                </select>
+                
+                <button type="submit">Get started</button>
+            </form>
+        </main>
+        
+        <%- include("../include/footer.ejs"); %>
+    </body>
+</html>
